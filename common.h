@@ -2,7 +2,7 @@
  * **YOUR GROUP INFO SHOULD GO HERE**
  *
  * common.h
- *
+ * TEAM IS STILL AWESOME
  * common definitions that are used throughout the compiler.
  **********************************************************************/
 
