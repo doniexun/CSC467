@@ -1,0 +1,107 @@
+Terminals which are not used
+
+   T_BOOL
+   T_INT
+   T_FLOAT
+   T_VEC
+   T_BVEC
+   T_IVEC
+   T_CONST
+   T_RQUAL
+   T_AQUAL
+   T_UQUAL
+   INT
+   BOOL
+   FLOAT
+   IDENT
+   LOOP
+   T_IF
+   T_ELSE
+   FUNC
+   SCOPE
+   BRACE
+   SBRACE
+   OP
+   SEMICOL
+   COMMA
+   DOT
+
+
+Rules never reduced
+
+    2 program: /* empty */
+
+
+State 0 conflicts: 1 reduce/reduce
+
+
+Grammar
+
+    0 $accept: program $end
+
+    1 program: /* empty */
+    2        | /* empty */
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+T_BOOL (258)
+T_INT (259)
+T_FLOAT (260)
+T_VEC (261)
+T_BVEC (262)
+T_IVEC (263)
+T_CONST (264)
+T_RQUAL (265)
+T_AQUAL (266)
+T_UQUAL (267)
+INT (268)
+BOOL (269)
+FLOAT (270)
+IDENT (271)
+LOOP (272)
+T_IF (273)
+T_ELSE (274)
+FUNC (275)
+SCOPE (276)
+BRACE (277)
+SBRACE (278)
+OP (279)
+SEMICOL (280)
+COMMA (281)
+DOT (282)
+
+
+Nonterminals, with rules where they appear
+
+$accept (28)
+    on left: 0
+program (29)
+    on left: 1 2, on right: 0
+
+
+state 0
+
+    0 $accept: . program $end
+
+    $end      reduce using rule 1 (program)
+    $end      [reduce using rule 2 (program)]
+    $default  reduce using rule 1 (program)
+
+    program  go to state 1
+
+
+state 1
+
+    0 $accept: program . $end
+
+    $end  shift, and go to state 2
+
+
+state 2
+
+    0 $accept: program $end .
+
+    $default  accept

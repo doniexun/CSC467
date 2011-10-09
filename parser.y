@@ -56,40 +56,29 @@ extern int yyline;        /* variable holding current line number   */
 
 %union {
   int num;
+  char* s;
+  long lnum;   
 }
 // TODO:Replace myToken with your tokens, you can use these tokens in flex
-%token           myToken1 myToken2  
 
+%token           T_BOOL T_INT T_FLOAT T_VEC T_BVEC T_IVEC T_CONST   
+%token			T_RQUAL T_AQUAL T_UQUAL
+%token 	<num>	 INT 
+%token 	<num>	 BOOL
+%token	<lnum>	 FLOAT 
 
-%start    program
+%token 		 IDENT LOOP T_IF T_ELSE FUNC 
+%token 		 SCOPE BRACE SBRACE 
+%token		OP SEMICOL COMMA DOT   
 
+%start           program
+
+%% 
+
+program:	
+			|
+			;
 %%
-
-/***********************************************************************
- *  Yacc/Bison rules
- *  Phase 2:
- *    1. Replace grammar found here with something reflecting the source
- *       language grammar
- *    2. Implement the trace parser option of the compiler
- *  Phase 3:
- *    1. Add code to rules for construction of AST.
- ***********************************************************************/
-program
-  :   tokens       
-  ;
-tokens
-  :  tokens token  
-  |      
-  ;
-// TODO: replace myToken with the token the you defined.
-token
-  :     myToken1 
-  |     myToken2                     
-  ;
-
-
-%%
-
 /***********************************************************************ol
  * Extra C code.
  *
