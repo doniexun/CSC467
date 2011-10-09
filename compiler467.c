@@ -1,7 +1,9 @@
 /***********************************************************************
- * **YOUR GROUP INFO SHOULD GO HERE**
- *
- * compiler467.c
+ * **GROUP INFO**
+ *  Karan Patel 996173359 
+ *	Sergey Korobkov 996042982
+ * 
+ *	compiler467.c
  *
  * This is the main driver program for the CSC467F course project
  * compiler.  It handles compiler command line options and

@@ -1,5 +1,8 @@
 /***********************************************************************
- * **YOUR GROUP INFO SHOULD GO HERE**
+* **GROUP INFO**
+*  Karan Patel 996173359 
+*	Sergey Korobkov 996042982
+* 
  *
  * globalvars.c
  *
