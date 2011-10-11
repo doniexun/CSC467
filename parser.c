@@ -84,13 +84,16 @@
      T_IF = 273,
      T_ELSE = 274,
      FUNC = 275,
-     SCOPE = 276,
-     BRACE = 277,
-     SBRACE = 278,
-     OP = 279,
-     SEMICOL = 280,
-     COMMA = 281,
-     DOT = 282
+     L_SCOPE = 276,
+     R_SCOPE = 277,
+     L_BRACE = 278,
+     R_BRACE = 279,
+     L_SBRACE = 280,
+     R_SBRACE = 281,
+     OP = 282,
+     SEMICOL = 283,
+     COMMA = 284,
+     DOT = 285
    };
 #endif
 /* Tokens.  */
@@ -112,13 +115,16 @@
 #define T_IF 273
 #define T_ELSE 274
 #define FUNC 275
-#define SCOPE 276
-#define BRACE 277
-#define SBRACE 278
-#define OP 279
-#define SEMICOL 280
-#define COMMA 281
-#define DOT 282
+#define L_SCOPE 276
+#define R_SCOPE 277
+#define L_BRACE 278
+#define R_BRACE 279
+#define L_SBRACE 280
+#define R_SBRACE 281
+#define OP 282
+#define SEMICOL 283
+#define COMMA 284
+#define DOT 285
 
 
 
@@ -127,7 +133,10 @@
 #line 1 "parser.y"
 
 /***********************************************************************
- * --YOUR GROUP INFO SHOULD GO HERE--
+* **GROUP INFO**
+*  Karan Patel 996173359 
+*	Sergey Korobkov 996042982
+* 
  * 
  *   Interface to the parser module for CSC467 course project.
  * 
@@ -155,7 +164,7 @@ void yyerror(char* s);    /* what to do in case of error            */
 int yylex();              /* procedure for calling lexical analyzer */
 extern int yyline;        /* variable holding current line number   */
 
-#line 49 "parser.y"
+#line 52 "parser.y"
 
 #define YYDEBUG 1
 
@@ -180,14 +189,14 @@ extern int yyline;        /* variable holding current line number   */
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 57 "parser.y"
+#line 60 "parser.y"
 {
   int num;
   char* s;
   long lnum;   
 }
 /* Line 193 of yacc.c.  */
-#line 191 "y.tab.c"
+#line 200 "y.tab.c"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
@@ -200,7 +209,7 @@ typedef union YYSTYPE
 
 
 /* Line 216 of yacc.c.  */
-#line 204 "y.tab.c"
+#line 213 "y.tab.c"
 
 #ifdef short
 # undef short
@@ -418,7 +427,7 @@ union yyalloc
 #define YYLAST   0
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  28
+#define YYNTOKENS  31
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  2
 /* YYNRULES -- Number of rules.  */
@@ -428,7 +437,7 @@ union yyalloc
 
 /* YYTRANSLATE(YYLEX) -- Bison symbol number corresponding to YYLEX.  */
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   282
+#define YYMAXUTOK   285
 
 #define YYTRANSLATE(YYX)						\
   ((unsigned int) (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
@@ -464,7 +473,7 @@ static const yytype_uint8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
        5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
       15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
-      25,    26,    27
+      25,    26,    27,    28,    29,    30
 };
 
 #if YYDEBUG
@@ -478,13 +487,13 @@ static const yytype_uint8 yyprhs[] =
 /* YYRHS -- A `-1'-separated list of the rules' RHS.  */
 static const yytype_int8 yyrhs[] =
 {
-      29,     0,    -1,    -1,    -1
+      32,     0,    -1,    -1,    -1
 };
 
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    78,    78,    79
+       0,    81,    81,    82
 };
 #endif
 
@@ -495,8 +504,9 @@ static const char *const yytname[] =
 {
   "$end", "error", "$undefined", "T_BOOL", "T_INT", "T_FLOAT", "T_VEC",
   "T_BVEC", "T_IVEC", "T_CONST", "T_RQUAL", "T_AQUAL", "T_UQUAL", "INT",
-  "BOOL", "FLOAT", "IDENT", "LOOP", "T_IF", "T_ELSE", "FUNC", "SCOPE",
-  "BRACE", "SBRACE", "OP", "SEMICOL", "COMMA", "DOT", "$accept", "program", 0
+  "BOOL", "FLOAT", "IDENT", "LOOP", "T_IF", "T_ELSE", "FUNC", "L_SCOPE",
+  "R_SCOPE", "L_BRACE", "R_BRACE", "L_SBRACE", "R_SBRACE", "OP", "SEMICOL",
+  "COMMA", "DOT", "$accept", "program", 0
 };
 #endif
 
@@ -507,14 +517,15 @@ static const yytype_uint16 yytoknum[] =
 {
        0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
      265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
-     275,   276,   277,   278,   279,   280,   281,   282
+     275,   276,   277,   278,   279,   280,   281,   282,   283,   284,
+     285
 };
 # endif
 
 /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,    28,    29,    29
+       0,    31,    32,    32
 };
 
 /* YYR2[YYN] -- Number of symbols composing right hand side of rule YYN.  */
@@ -570,7 +581,7 @@ static const yytype_uint8 yycheck[] =
    symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,    29,     0
+       0,    32,     0
 };
 
 #define yyerrok		(yyerrstatus = 0)
@@ -1386,7 +1397,7 @@ yyreduce:
     {
       
 /* Line 1267 of yacc.c.  */
-#line 1390 "y.tab.c"
+#line 1401 "y.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1600,7 +1611,7 @@ yyreturn:
 }
 
 
-#line 81 "parser.y"
+#line 84 "parser.y"
 
 /***********************************************************************ol
  * Extra C code.

@@ -18,9 +18,12 @@ Terminals which are not used
    T_IF
    T_ELSE
    FUNC
-   SCOPE
-   BRACE
-   SBRACE
+   L_SCOPE
+   R_SCOPE
+   L_BRACE
+   R_BRACE
+   L_SBRACE
+   R_SBRACE
    OP
    SEMICOL
    COMMA
@@ -65,20 +68,23 @@ LOOP (272)
 T_IF (273)
 T_ELSE (274)
 FUNC (275)
-SCOPE (276)
-BRACE (277)
-SBRACE (278)
-OP (279)
-SEMICOL (280)
-COMMA (281)
-DOT (282)
+L_SCOPE (276)
+R_SCOPE (277)
+L_BRACE (278)
+R_BRACE (279)
+L_SBRACE (280)
+R_SBRACE (281)
+OP (282)
+SEMICOL (283)
+COMMA (284)
+DOT (285)
 
 
 Nonterminals, with rules where they appear
 
-$accept (28)
+$accept (31)
     on left: 0
-program (29)
+program (32)
     on left: 1 2, on right: 0
 
 

@@ -57,13 +57,16 @@
      T_IF = 273,
      T_ELSE = 274,
      FUNC = 275,
-     SCOPE = 276,
-     BRACE = 277,
-     SBRACE = 278,
-     OP = 279,
-     SEMICOL = 280,
-     COMMA = 281,
-     DOT = 282
+     L_SCOPE = 276,
+     R_SCOPE = 277,
+     L_BRACE = 278,
+     R_BRACE = 279,
+     L_SBRACE = 280,
+     R_SBRACE = 281,
+     OP = 282,
+     SEMICOL = 283,
+     COMMA = 284,
+     DOT = 285
    };
 #endif
 /* Tokens.  */
@@ -85,27 +88,30 @@
 #define T_IF 273
 #define T_ELSE 274
 #define FUNC 275
-#define SCOPE 276
-#define BRACE 277
-#define SBRACE 278
-#define OP 279
-#define SEMICOL 280
-#define COMMA 281
-#define DOT 282
+#define L_SCOPE 276
+#define R_SCOPE 277
+#define L_BRACE 278
+#define R_BRACE 279
+#define L_SBRACE 280
+#define R_SBRACE 281
+#define OP 282
+#define SEMICOL 283
+#define COMMA 284
+#define DOT 285
 
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 57 "parser.y"
+#line 60 "parser.y"
 {
   int num;
   char* s;
   long lnum;   
 }
 /* Line 1529 of yacc.c.  */
-#line 109 "y.tab.h"
+#line 115 "y.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

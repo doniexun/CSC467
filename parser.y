@@ -71,7 +71,7 @@ extern int yyline;        /* variable holding current line number   */
 %token	<lnum>	 FLOAT 
 
 %token 		 IDENT LOOP T_IF T_ELSE FUNC 
-%token 		 SCOPE BRACE SBRACE 
+%token 		 L_SCOPE R_SCOPE L_BRACE R_BRACE L_SBRACE R_SBRACE 
 %token		OP SEMICOL COMMA DOT   
 
 %start           program

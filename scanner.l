@@ -142,19 +142,34 @@ l_float		((\-|\+|\s)?(((0|[1-9])[1-9]*)?[.][0-9][0-9]*))
 	return FUNC; 
 }
 
-(\{|\})	{
-	yTRACE(SCOPE);
-	return SCOPE; 
+\{	{
+	yTRACE(L_SCOPE);
+	return L_SCOPE; 
 }
 
-(\(|\))	{
-	yTRACE(BRACE);
-	return BRACE; 
+\}	{
+	yTRACE(R_SCOPE);
+	return R_SCOPE; 
 }
 
-(\[|\])	{
-	yTRACE(SBRACE);
-	return SBRACE; 
+\(	{
+	yTRACE(L_BRACE);
+	return L_BRACE; 
+}
+
+\)	{
+	yTRACE(R_BRACE);
+	return R_BRACE; 
+}
+
+\[	{
+	yTRACE(L_SBRACE);
+	return L_SBRACE; 
+}
+
+\]	{
+	yTRACE(R_SBRACE);
+	return R_SBRACE; 
 }
 
 (\=|\+|\-|\*|\/|\^|\!|&&|\|\||\=\=|\!\=|\<|\<\=|\>|\>\=)	{
