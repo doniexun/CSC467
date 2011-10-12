@@ -64,15 +64,21 @@ extern int yyline;        /* variable holding current line number   */
 }
 // TODO:Replace myToken with your tokens, you can use these tokens in flex
 
-%token           T_BOOL T_INT T_FLOAT T_VEC T_BVEC T_IVEC T_CONST   
+%token           T_BOOL T_INT T_FLOAT 
+%token  <num>    T_VEC 
+%token  <num>    T_BVEC 
+%token  <num>    T_IVEC 
+%token           T_CONST   
 %token			T_RQUAL T_AQUAL T_UQUAL
 %token 	<num>	 INT 
 %token 	<num>	 BOOL
 %token	<lnum>	 FLOAT 
 
-%token 		 IDENT LOOP T_IF T_ELSE FUNC 
+%token 	 <s>	 IDENT 
+%token 		 LOOP T_IF T_ELSE FUNC 
 %token 		 L_SCOPE R_SCOPE L_BRACE R_BRACE L_SBRACE R_SBRACE 
-%token		OP SEMICOL COMMA DOT   
+%token   <s>	 OP 
+%token 		 SEMICOL COMMA DOT   
 
 %start           program
 

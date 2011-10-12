@@ -68,18 +68,23 @@ l_float		((\-|\+|\s)?(((0|[1-9])[1-9]*)?[.][0-9][0-9]*))
 	yTRACE(T_FLOAT);
 	return T_FLOAT; 	
 } 
-"vec"[234]	{
+"vec"[234]   {
+	char* temp = yytext+3;
+        yylval.num = atoi(temp);   
 	yTRACE(T_VEC);
 	return T_VEC; 
 }
 "bvec"[234]  {
+	char* temp = yytext+4;
+        yylval.num = atoi(temp);   
 	yTRACE(T_BVEC);
 	return T_BVEC;
 } 
 "ivec"[234]  {
+	char* temp = yytext+3;
+        yylval.num = atoi(temp);   
 	yTRACE(T_IVEC);
-	return T_IVEC;
-	
+	return T_IVEC;	
 }
 "const"	{
 	yTRACE(T_CONST);
@@ -87,14 +92,20 @@ l_float		((\-|\+|\s)?(((0|[1-9])[1-9]*)?[.][0-9][0-9]*))
 }
 
 "gl_FragColor"|"gl_FragDepth"|"gl_FragCoord"	{
+        yylval.s = (char *) malloc((strlen(yytext)+1)*(sizeof(char)));
+        strcpy(yylval.s, yytext);  
 	yTRACE(T_RQUAL);
 	return T_RQUAL;
 }
 "gl_TexCoord"|"gl_Color"|"gl_Secondary"|"gl_FogFragCoord"	{
+        yylval.s = (char *) malloc((strlen(yytext)+1)*(sizeof(char)));
+        strcpy(yylval.s, yytext);  
 	yTRACE(T_AQUAL);
 	return T_AQUAL;
 }
 "gl_Light_Half"|"gl_Light_Ambient"|"gl_Material_Shininess"|"env1"|"env2"|"env3"	{
+        yylval.s = (char *) malloc((strlen(yytext)+1)*(sizeof(char)));
+        strcpy(yylval.s, yytext);  
 	yTRACE(T_UQUAL);
 	return T_UQUAL;
 }
@@ -138,6 +149,8 @@ l_float		((\-|\+|\s)?(((0|[1-9])[1-9]*)?[.][0-9][0-9]*))
 }
 
 "dp3"|"lit"|"rsq"	{
+        yylval.s = (char *) malloc((strlen(yytext)+1)*(sizeof(char)));
+        strcpy(yylval.s, yytext);  
 	yTRACE(FUNC);
 	return FUNC; 
 }
@@ -173,6 +186,7 @@ l_float		((\-|\+|\s)?(((0|[1-9])[1-9]*)?[.][0-9][0-9]*))
 }
 
 (\=|\+|\-|\*|\/|\^|\!|&&|\|\||\=\=|\!\=|\<|\<\=|\>|\>\=)	{
+	yylval.num = *yytext; //just store the ASCII number  
 	yTRACE(OP);
 	return OP; 
 }
@@ -191,6 +205,8 @@ l_float		((\-|\+|\s)?(((0|[1-9])[1-9]*)?[.][0-9][0-9]*))
 }
 
 ((_|{letter})({digit}|{letter}|_)*) {
+        yylval.s = (char *) malloc((strlen(yytext)+1)*(sizeof(char)));
+        strcpy(yylval.s, yytext);  
 	yTRACE(IDENT);
 	return IDENT; 
 }
